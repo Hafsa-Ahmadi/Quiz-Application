@@ -1,21 +1,28 @@
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class UpdateScore {
+public class getUserAnswer {
 
-    //----------------------------------------------------------------
-    public static String getUserAnswer(Scanner sc) {
-        System.out.print("Now enter your answer (A, B, C, D): ");
-        String answer = sc.nextLine().trim().toUpperCase();
-
-        if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D")) {
-            return answer;
+    //--------------------------------------------------------------
+    public static int checkAnswer(String userAnswer, String correctAnswer) {
+        if (userAnswer != null && userAnswer.equals(correctAnswer)) {
+            System.out.println("Answer is correct!");
+            return 1;
+        } else {
+            System.out.println("Your answer is wrong! The correct answer is " + correctAnswer + ".");
+            return 0;
         }
-        return null;
     }
-    //----------------------------------------------------------------
+
+
+    public static int updateScore(int score, int result) {
+        if(result == 1)
+            return score + 1;
+        else
+            return score;
+    }
+    //--------------------------------------------------------------
 
     public static ArrayList<String[]> getJavaQuestions() {
         ArrayList<String[]> questions = new ArrayList<>();
@@ -78,23 +85,37 @@ public class UpdateScore {
         System.out.println(question[4]);
     }
 
+    public static String getUserAnswer(Scanner sc) {
+        System.out.print("Now enter your answer (A, B, C, D): ");
+        String answer = sc.nextLine().trim().toUpperCase();
+
+        if (answer.equals("A") || answer.equals("B") || answer.equals("C") || answer.equals("D")) {
+            return answer;
+        }
+        return null;
+    }
+
     public static void playQuiz() {
         System.out.println("Welcome to Java Quiz!");
         ArrayList<String[]> questions = getJavaQuestions();
         Collections.shuffle(questions);
         Scanner sc = new Scanner(System.in);
         int score = 0;
-        int i = 1;
+        int question_number = 1;
 
         for (String[] question : questions) {
-            displayQuestion(question, i);
+            displayQuestion(question, question_number);
             countdownTimer();
             String userAnswer = getUserAnswer(sc);
-            System.out.println("your response: "+userAnswer);
+            int result = checkAnswer(userAnswer, question[5]);
+            score = updateScore(score, result);
+            question_number++;
         }
 
+        System.out.println("\nYour final score is: " + score + " / " + questions.size());
+        System.out.println("Thanks for playing!");
     }
-    
+
     public static void main(String[] args) {
         playQuiz();
     }
