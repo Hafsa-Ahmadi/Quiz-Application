@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class Codechef {
+public class Storing {
 
     public static ArrayList<String[]> getJavaQuestions() {
         ArrayList<String[]> questions = new ArrayList<>();
