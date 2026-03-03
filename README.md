@@ -1,10 +1,3 @@
-Below is the **Project Documentation–style version** of your Quiz Game README.
-This is formatted the way **universities, lab records, and project reports** expect: formal, sectioned, and solution-free.
-
-You can paste this directly into `README.md` or submit it as **Project Documentation**.
-
----
-
 # **Project Documentation**
 
 ## **Project Title**
